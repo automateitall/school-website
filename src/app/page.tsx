@@ -139,6 +139,7 @@ async function NoticesSection() {
       next: { revalidate: 60 }
     })
     notices = await res.json()
+    notices = Array.isArray(data) ? data : []
   } catch {}
 
   const typeStyle = (title: string) => {
