@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function Footer() {
+export default function Footer({ settings: s }) {
   return (
     <footer className="footer">
       <div className="footer-grid">
@@ -11,7 +11,7 @@ export default function Footer() {
             <Image src="/logo-tzp.svg" alt="Taare Zameen Par" width={38} height={38} className="footer-logo" />
           </div>
           <h3>CM Public School &<br />Taare Zameen Par</h3>
-          <p>Nurturing young minds with quality education and strong values. CBSE affiliated, established 2008, New Delhi.</p>
+          <p>Nurturing young minds with quality education and strong values. CBSE affiliated, established {s?.foundedYear || '2012'}, {s?.address || 'New Delhi, India'}.</p>
         </div>
         <div className="footer-col">
           <h4>Quick Links</h4>
@@ -31,9 +31,9 @@ export default function Footer() {
         </div>
         <div className="footer-col">
           <h4>Contact</h4>
-          <a href="tel:+919876543210">📞 +91 98765 43210</a>
-          <a href="mailto:info@cmtzpschool.in">✉️ info@cmtzpschool.in</a>
-          <a href="#">📍 New Delhi, India</a>
+          <a href={`tel:${s?.phone}`}>📞 {s?.phone || '+91 98765 43210'}</a>
+          <a href={`mailto:${s?.email}`}>✉️ {s?.email || 'info@cmtzpschool.in'}</a>
+          <a href="#">📍 {s?.address || 'New Delhi, India'}</a>
         </div>
       </div>
       <div className="footer-bottom">
