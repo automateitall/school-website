@@ -138,7 +138,7 @@ async function NoticesSection() {
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/notices`, {
       next: { revalidate: 60 }
     })
-    notices = await res.json()
+    
     notices = Array.isArray(data) ? data : []
   } catch {}
 
