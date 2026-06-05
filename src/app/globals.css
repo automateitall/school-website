@@ -257,3 +257,6 @@ img{display:block}
 @media(max-width:768px){
   .gallery-grid{grid-template-columns:1fr 1fr}
 }
+@media(max-width:768px){
+  .tzp-two-col { grid-template-columns: 1fr !important; }
+}

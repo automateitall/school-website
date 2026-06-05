@@ -31,9 +31,9 @@ export default function Navbar({ settings: s }) {
         <div className="navbar-inner">
           <Link href="/" className="navbar-brand">
             <div className="navbar-logos">
-              <Image src="/logo-cm.svg" alt="CM Public School" width={44} height={44} />
+              <Image src="/logo-cm.svg" alt="CM Public School" width={44} height={50} />
               <div className="navbar-divider" />
-              <Image src="/logo-tzp.svg" alt="Taare Zameen Par" width={50} height={44} />
+              <Image src="/logo-tzp.svg" alt="Taare Zameen Par" width={44} height={44}  />
             </div>
             <div className="navbar-brand-text">
               <h2>CM Public School</h2>

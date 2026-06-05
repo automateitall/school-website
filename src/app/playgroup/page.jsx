@@ -13,13 +13,18 @@ export default async function Playgroup() {
             Admissions open 2026–27
           </div>
 
-          <div style={{ width: '90px', height: '90px', borderRadius: '50%', background: '#fff3ec', border: '3px solid #fcd5b0', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px', overflow: 'hidden', padding: '8px' }}>
-            <Image src="/logo-tzp.svg" alt="Taare Zameen Par" width={65} height={65} />
-          </div>
-
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', marginBottom: '20px', flexWrap: 'wrap' }}>
+          
+             <img 
+    src="/logo-tzp.svg" 
+    alt="Taare Zameen Par" 
+    style={{ width: '100px', height: '100px'}} 
+  />
+          
           <h1 style={{ fontSize: '2.4rem', fontWeight: '900', color: '#c45e1e', lineHeight: '1.15', marginBottom: '8px', letterSpacing: '-0.02em' }}>
             Taare Zameen Par<br /><span style={{ color: '#ff914d' }}>Play School</span>
           </h1>
+        </div>
           <p style={{ color: '#94a3b8', fontSize: '15px', lineHeight: '1.8', marginBottom: '28px', maxWidth: '480px', margin: '0 auto 28px' }}>
             {s?.tzpSchoolDescription || 'A warm, joyful space where little ones aged 2–6 discover the magic of learning through play, creativity, and lots of love.'}
           </p>
@@ -63,7 +68,7 @@ export default async function Playgroup() {
             ))}
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'start', marginBottom: '56px' }}>
+          <div className="tzp-two-col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'start', marginBottom: '56px' }}>
             <div>
               <p className="section-eyebrow" style={{ textAlign: 'left' }}>Daily routine</p>
               <h2 className="section-title" style={{ textAlign: 'left' }}>A day at TZP</h2>
