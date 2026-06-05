@@ -32,12 +32,12 @@ export default function Admissions() {
     .catch(() => {})
   }, [])
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
     setError('')
     try {
-      const res = await fetch('http://localhost:5000/api/admissions', {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/admissions`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
