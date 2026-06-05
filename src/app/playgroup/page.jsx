@@ -97,4 +97,49 @@ export default async function Playgroup() {
               <div className="about-stats-col" style={{ marginTop: '20px' }}>
                 {[
                   { n: '150+', label: 'Happy children enrolled', color: '#ff914d' },
-                  { n: '2–6', label: 'Age group we serve', co
+                  { n: '2–6', label: 'Age group we serve', color: '#00bf63' },
+                  { n: '10:1', label: 'Child to teacher ratio', color: '#083e78' },
+                  { n: '14+', label: 'Years of nurturing children', color: '#ff914d' },
+                ].map(stat => (
+                  <div key={stat.label} className="about-stat-card">
+                    <strong style={{ color: stat.color }}>{stat.n}</strong>
+                    <span>{stat.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ background: '#fff8f3', borderRadius: '14px', padding: '20px', marginTop: '20px', border: '1px solid #fcd5b0' }}>
+                <p style={{ color: '#083e78', fontWeight: '700', fontSize: '14px', marginBottom: '8px' }}>📞 Want to know more?</p>
+                <p style={{ color: '#64748b', fontSize: '13px', marginBottom: '14px', lineHeight: '1.7' }}>
+                  Call us directly and we'll answer all your questions about admissions, fees, and daily routine.
+                </p>
+                <a href={`tel:${s?.phone || '+919876543210'}`} style={{ background: '#ff914d', color: 'white', fontSize: '13px', fontWeight: '700', padding: '10px 20px', borderRadius: '8px', display: 'inline-block' }}>
+                  📞 {s?.phone || '+91 98765 43210'}
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <section style={{ background: '#ff914d', borderRadius: '20px', padding: '44px 32px', textAlign: 'center' }}>
+            <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px', fontSize: '28px' }}>⭐</div>
+            <h2 style={{ color: 'white', fontSize: '24px', fontWeight: '900', marginBottom: '10px', letterSpacing: '-0.02em' }}>
+              Secure your child's spot today
+            </h2>
+            <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '14px', marginBottom: '24px', maxWidth: '440px', margin: '0 auto 24px', lineHeight: '1.75' }}>
+              Limited seats for Play Group, Nursery, LKG and UKG for session 2026–27. Fill a free enquiry form — we'll call you within 24 hours.
+            </p>
+            <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <a href="/admissions" style={{ background: 'white', color: '#ff914d', fontSize: '14px', fontWeight: '700', padding: '13px 28px', borderRadius: '10px', display: 'inline-block' }}>
+                Apply Now — It's Free →
+              </a>
+              <a href="/contact" style={{ border: '1.5px solid rgba(255,255,255,0.5)', color: 'white', fontSize: '14px', fontWeight: '600', padding: '12px 26px', borderRadius: '10px', display: 'inline-block' }}>
+                Contact Us
+              </a>
+            </div>
+          </section>
+
+        </div>
+      </section>
+    </div>
+  )
+}
