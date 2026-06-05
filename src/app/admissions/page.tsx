@@ -15,6 +15,22 @@ export default function Admissions() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [classes, setClasses] = useState([])
+  const [settings, setSettings] = useState(null)
+  
+  useEffect(() => {
+  fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/settings`)
+    .then(r => r.json())
+    .then(setSettings)
+    .catch(() => {})
+  }, [])
+
+  useEffect(() => {
+  fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/settings/classes`)
+    .then(r => r.json())
+    .then(d => setClasses(d.classes || []))
+    .catch(() => {})
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -76,25 +92,29 @@ export default function Admissions() {
               <h3>Seats available</h3>
               <div className="seats-list">
                 {[
-                  { label: 'Play School (TZP)', badge: 'badge-green', status: 'Open' },
-                  { label: 'Nursery – Class II', badge: 'badge-green', status: 'Open' },
-                  { label: 'Class III – V', badge: 'badge-green', status: 'Open' },
-                  { label: 'Class VI – VIII', badge: 'badge-blue', status: 'Limited' },
-                  { label: 'Class IX – X', badge: 'badge-blue', status: 'Limited' },
-                  { label: 'Class XI – XII', badge: 'badge-orange', status: 'Few Seats' },
-                ].map(row => (
-                  <div key={row.label} className="seat-row">
-                    <span className="seat-label">{row.label}</span>
-                    <span className={row.badge}>{row.status}</span>
-                  </div>
-                ))}
+                  { label: '🌟 Play School (TZP)', key: 'seatPlayGroup' },
+                  { label: '📚 Nursery – Class V', key: 'seatNurseryV' },
+                  { label: '📚 Class VI – X', key: 'seatVIX' },
+                  { label: '📚 Class XI – XII', key: 'seatXXII' },
+                ].map(row => {
+                  const status = settings?.[row.key] || 'Open'
+                  const badgeClass = status === 'Open' ? 'badge-green' : status === 'Limited' ? 'badge-blue' : 'badge-orange'
+                  return (
+                    <div key={row.label} className="seat-row">
+                      <span className="seat-label">{row.label}</span>
+                      <span className={badgeClass}>{status}</span>
+                    </div>
+                  )
+                })}
               </div>
             </div>
 
             <div className="info-card contact-card" style={{ marginTop: '16px' }}>
               <h3>Need help?</h3>
               <p className="contact-desc">Call us directly and we'll answer all your questions.</p>
-              <a href="tel:+919876543210" className="btn-call">📞 +91 98765 43210</a>
+              <a href={`tel:${settings?.phone || '+919876543210'}`} className="btn-call">
+                📞 {settings?.phone || '+91 98765 43210'}
+              </a>
             </div>
           </div>
 
@@ -148,12 +168,8 @@ export default function Admissions() {
                       <label>Class / Grade Applying For *</label>
                       <select value={form.classApplied} onChange={e => setForm({...form, classApplied: e.target.value})} required>
                         <option value="">Select class</option>
-                        <option>Play Group</option>
-                        <option>Nursery</option>
-                        <option>LKG</option>
-                        <option>UKG</option>
-                        {[1,2,3,4,5,6,7,8,9,10,11,12].map(n => (
-                          <option key={n}>Class {n}</option>
+                        {classes.map(c => (
+                          <option key={c}>{c}</option>
                         ))}
                       </select>
                     </div>
