@@ -49,11 +49,11 @@ export default function Navbar({ settings: s }) {
         </div>
       </nav>
 
-      <div className="notice-bar">
+      <Link href="/notices" className="notice-bar" style={{ textDecoration: 'none' }}>
         <span className="notice-pill">NOTICE</span>
-        <span className="notice-text">{s?.noticeBarText || 'Admissions open for Session 2026–27'}</span>
-        <Link href="/admissions" className="notice-link">Apply now →</Link>
-      </div>
+        <span className="notice-text">{s?.latestNotice || s?.noticeBarText || 'Admissions open for Session 2026–27'}</span>
+        <span className="notice-link">View all →</span>
+      </Link>
     </>
   )
 }

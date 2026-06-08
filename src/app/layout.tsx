@@ -15,6 +15,15 @@ export default async function RootLayout({
   children: React.ReactNode
 }) {
   const settings = await getSettings()
+  
+  let latestNotice = null
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/notices`, { next: { revalidate: 60 } })
+    const data = await res.json()
+    if (data?.length > 0) latestNotice = data[0].title
+  } catch {}
+
+if (latestNotice) settings.latestNotice = latestNotice
 
   return (
     <html lang="en">
