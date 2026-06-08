@@ -10,7 +10,7 @@ export default function Notices() {
   useEffect(() => {
     const fetchNotices = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/notices')
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/notices`)
         const data = await res.json()
         setNotices(data)
       } catch (err) {
