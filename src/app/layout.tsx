@@ -23,7 +23,7 @@ export default async function RootLayout({
     if (data?.length > 0) latestNotice = data[0].title
   } catch {}
 
-if (latestNotice) settings.latestNotice = latestNotice
+  if (latestNotice) settings.latestNotice = latestNotice
 
   return (
     <html lang="en">

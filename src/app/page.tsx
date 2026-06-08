@@ -1,4 +1,5 @@
 import { getSettings } from './lib/settings'
+import { getSeatRows } from './lib/settings'
 
 export default async function Home() {
   const s = await getSettings()
@@ -38,12 +39,7 @@ export default async function Home() {
                 <p>{s?.heroCardSubtitle || 'Applications being accepted now'}</p>
               </div>
               <div className="hero-card-body">
-                {[
-                  { label: '🌟 Play School (TZP)', key: 'seatPlayGroup' },
-                  { label: '📚 Nursery – Class V', key: 'seatNurseryV' },
-                  { label: '📚 Class VI – X', key: 'seatVIX' },
-                  { label: '📚 Class XI – XII', key: 'seatXXII' },
-                ].map(row => {
+                {getSeatRows(s).map(row => {
                   const status = s?.[row.key] || 'Open'
                   const colors = seatColor(status)
                   return (

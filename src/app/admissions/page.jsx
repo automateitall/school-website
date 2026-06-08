@@ -1,35 +1,43 @@
- 
 'use client'
 import { useState, useEffect } from 'react'
 
+const CLASS_ORDER = ['Play Group', 'Nursery', 'LKG', 'UKG', 'Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6', 'Class 7', 'Class 8', 'Class 9', 'Class 10', 'Class 11', 'Class 12']
+
+const getSeatRows = (settings) => {
+  const classFrom = settings?.classFrom || 'Play Group'
+  const classTo = settings?.classTo || 'Class 8'
+  const fromIdx = CLASS_ORDER.indexOf(classFrom)
+  const toIdx = CLASS_ORDER.indexOf(classTo)
+  const inRange = (c) => { const idx = CLASS_ORDER.indexOf(c); return idx >= fromIdx && idx <= toIdx }
+  const rows = []
+  if (inRange('Play Group')) rows.push({ label: '🌟 Play School (TZP)', key: 'seatPlayGroup' })
+  if (inRange('Nursery')) rows.push({ label: '📚 Nursery', key: 'seatNursery' })
+  if (inRange('LKG') || inRange('UKG')) rows.push({ label: '📚 LKG – UKG', key: 'seatLKGUKG' })
+  if (['Class 1','Class 2','Class 3','Class 4','Class 5','Class 6','Class 7','Class 8','Class 9','Class 10','Class 11','Class 12'].some(inRange)) {
+    rows.push({ label: `📚 Class 1 – ${classTo}`, key: 'seatClass1To' })
+  }
+  return rows
+}
+
 export default function Admissions() {
   const [form, setForm] = useState({
-    childName: '',
-    parentName: '',
-    phone: '',
-    email: '',
-    classApplied: '',
-    school: 'CMP',
-    message: ''
+    childName: '', parentName: '', phone: '', email: '',
+    classApplied: '', school: 'CMP', message: ''
   })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [classes, setClasses] = useState([])
   const [settings, setSettings] = useState(null)
-  
+
   useEffect(() => {
-  fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/settings`)
-    .then(r => r.json())
-    .then(setSettings)
-    .catch(() => {})
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/settings`)
+      .then(r => r.json()).then(setSettings).catch(() => {})
   }, [])
 
   useEffect(() => {
-  fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/settings/classes`)
-    .then(r => r.json())
-    .then(d => setClasses(d.classes || []))
-    .catch(() => {})
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/settings/classes`)
+      .then(r => r.json()).then(d => setClasses(d.classes || [])).catch(() => {})
   }, [])
 
   const handleSubmit = async (e) => {
@@ -42,11 +50,8 @@ export default function Admissions() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form)
       })
-      if (res.ok) {
-        setSubmitted(true)
-      } else {
-        setError('Something went wrong. Please try again.')
-      }
+      if (res.ok) { setSubmitted(true) }
+      else { setError('Something went wrong. Please try again.') }
     } catch {
       setError('Could not connect. Please try again.')
     } finally {
@@ -66,7 +71,6 @@ export default function Admissions() {
 
       <section className="admissions-section">
         <div className="admissions-inner">
-
           <div className="admissions-info">
             <div className="info-card">
               <h3>How it works</h3>
@@ -91,12 +95,7 @@ export default function Admissions() {
             <div className="info-card" style={{ marginTop: '16px' }}>
               <h3>Seats available</h3>
               <div className="seats-list">
-                {[
-                  { label: '🌟 Play School (TZP)', key: 'seatPlayGroup' },
-                  { label: '📚 Nursery – Class V', key: 'seatNurseryV' },
-                  { label: '📚 Class VI – X', key: 'seatVIX' },
-                  { label: '📚 Class XI – XII', key: 'seatXXII' },
-                ].map(row => {
+                {getSeatRows(settings).map(row => {
                   const status = settings?.[row.key] || 'Open'
                   const badgeClass = status === 'Open' ? 'badge-green' : status === 'Limited' ? 'badge-blue' : 'badge-orange'
                   return (
@@ -130,9 +129,7 @@ export default function Admissions() {
               <div className="form-card">
                 <h2>Admission Enquiry Form</h2>
                 <p className="form-subtitle">Fill in the details below and we'll get back to you shortly.</p>
-
                 {error && <div className="form-error">{error}</div>}
-
                 <form onSubmit={handleSubmit} className="adm-form">
                   <div className="form-row">
                     <div className="form-group">
@@ -144,7 +141,6 @@ export default function Admissions() {
                       <input type="text" value={form.parentName} onChange={e => setForm({...form, parentName: e.target.value})} placeholder="e.g. Rahul Sharma" required />
                     </div>
                   </div>
-
                   <div className="form-row">
                     <div className="form-group">
                       <label>Phone Number *</label>
@@ -155,7 +151,6 @@ export default function Admissions() {
                       <input type="email" value={form.email} onChange={e => setForm({...form, email: e.target.value})} placeholder="e.g. rahul@email.com" />
                     </div>
                   </div>
-
                   <div className="form-row">
                     <div className="form-group">
                       <label>Applying for School *</label>
@@ -174,16 +169,13 @@ export default function Admissions() {
                       </select>
                     </div>
                   </div>
-
                   <div className="form-group">
                     <label>Any questions or message?</label>
                     <textarea value={form.message} onChange={e => setForm({...form, message: e.target.value})} placeholder="Any specific questions about the school, curriculum, fees..." rows={3} />
                   </div>
-
                   <button type="submit" className="btn-submit" disabled={loading}>
                     {loading ? 'Submitting...' : 'Submit Enquiry →'}
                   </button>
-
                   <p className="form-note">🔒 Your information is safe with us. We never share your details with third parties.</p>
                 </form>
               </div>
