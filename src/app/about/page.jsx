@@ -28,7 +28,7 @@ export default async function About() {
                 { n: s?.foundedYear || '2012', label: 'Year founded' },
                 { n: s?.totalStudents || '500+', label: 'Students enrolled' },
                 { n: s?.facultyCount || '40+', label: 'Trained faculty' },
-                { n: s?.passRate || '95%', label: 'CBSE pass rate' },
+                { n: s?.passRate || '95%', label: 'UP Board pass rate' },
                 { n: s?.campuses || '2', label: 'School campuses' },
                 { n: s?.yearsOfExcellence || '15+', label: 'Years of excellence' },
               ].map(stat => (
@@ -59,11 +59,19 @@ export default async function About() {
           </div>
 
           <div className="principal-section">
-            <div className="principal-avatar">👨‍💼</div>
+            {s?.principalPhoto ? (
+              <img src={s.principalPhoto} alt={s?.principalName || 'Principal'} className="principal-photo" />
+            ) : (
+              <div className="principal-photo principal-photo-placeholder">👨‍💼</div>
+            )}
             <div className="principal-text">
               <p className="section-eyebrow" style={{ textAlign: 'left' }}>Message from the Principal</p>
-              <blockquote className="principal-quote">"{s?.principalQuote}"</blockquote>
-              <p className="principal-name">— Principal, CM Public School & Taare Zameen Par Play School</p>
+              <blockquote className="principal-quote">
+                <span className="principal-quote-mark">"</span>
+                {s?.principalQuote}
+              </blockquote>
+              <p className="principal-name">{s?.principalName || 'Principal'}</p>
+              <p className="principal-role">CM Public School & Taare Zameen Par Play School</p>
             </div>
           </div>
         </div>

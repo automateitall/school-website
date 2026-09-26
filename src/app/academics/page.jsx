@@ -14,24 +14,24 @@ export default async function Academics() {
         <div className="page-hero-inner">
           <p className="section-eyebrow">Curriculum & Learning</p>
           <h1 className="page-hero-title">Academics</h1>
-          <p className="page-hero-desc">A strong CBSE curriculum designed to nurture every child's potential — from Play Group to Class 5.</p>
+          <p className="page-hero-desc">A strong UP Board curriculum designed to nurture every child's potential — from Play Group to Class 5.</p>
         </div>
       </div>
 
       <section style={{ padding: '56px 2rem', background: 'white' }}>
         <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
 
-          {/* CBSE Affiliation */}
+          {/* UP Board Affiliation */}
           <div style={{ background: '#f0f4fb', borderRadius: '16px', padding: '32px', marginBottom: '48px', display: 'flex', gap: '24px', alignItems: 'center', flexWrap: 'wrap' }}>
             <div style={{ fontSize: '48px' }}>🎓</div>
             <div>
               <p className="section-eyebrow" style={{ textAlign: 'left' }}>Board Affiliation</p>
-              <h2 style={{ fontSize: '22px', fontWeight: '700', color: '#083e78', marginBottom: '8px' }}>Central Board of Secondary Education (CBSE)</h2>
+              <h2 style={{ fontSize: '22px', fontWeight: '700', color: '#083e78', marginBottom: '8px' }}>Uttar Pradesh Board of High School and Intermediate Education (UP Board)</h2>
               <p style={{ color: '#64748b', fontSize: '14px', lineHeight: '1.75', maxWidth: '600px' }}>
-                CM Public School is affiliated with CBSE, one of India's most respected education boards. Our curriculum follows the National Education Policy (NEP 2020) guidelines, focusing on conceptual understanding, skill development, and holistic growth.
+                CM Public School is affiliated with the UP Board, one of India's largest and most respected education boards. Our curriculum follows the National Education Policy (NEP 2020) guidelines, focusing on conceptual understanding, skill development, and holistic growth.
               </p>
-              <a href="https://cbse.gov.in" target="_blank" rel="noopener noreferrer" style={{ color: '#083e78', fontSize: '13px', fontWeight: '600', marginTop: '10px', display: 'inline-block' }}>
-                Visit CBSE Website →
+              <a href="https://upmsp.edu.in" target="_blank" rel="noopener noreferrer" style={{ color: '#083e78', fontSize: '13px', fontWeight: '600', marginTop: '10px', display: 'inline-block' }}>
+                Visit UP Board Website →
               </a>
             </div>
           </div>
@@ -71,7 +71,7 @@ export default async function Academics() {
           <div style={{ marginBottom: '48px' }}>
             <p className="section-eyebrow">Curriculum</p>
             <h2 className="section-title">Subjects we teach</h2>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginTop: '24px' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '24px', marginTop: '24px' }}>
               <div style={{ background: '#fff8f3', borderRadius: '14px', padding: '24px', border: '1px solid #fcd5b0' }}>
                 <h3 style={{ color: '#c45e1e', fontWeight: '700', fontSize: '16px', marginBottom: '16px' }}>⭐ Play Group – UKG</h3>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>

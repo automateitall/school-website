@@ -1,8 +1,10 @@
 'use client'
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export default function Navbar({ settings: s }) {
+  const [menuOpen, setMenuOpen] = useState(false)
   const links = [
     { href: '/', label: 'Home' },
     { href: '/about', label: 'About' },
@@ -22,14 +24,14 @@ export default function Navbar({ settings: s }) {
           <span className="topbar-item">📍 {s?.address || 'New Delhi, India'}</span>
         </div>
         <div className="topbar-right">
-          <span className="topbar-badge">CBSE AFFILIATED</span>
+          <span className="topbar-badge">UP BOARD AFFILIATED</span>
           <span className="topbar-badge">EST. {s?.foundedYear || '2012'}</span>
         </div>
       </div>
 
       <nav className="navbar">
         <div className="navbar-inner">
-          <Link href="/" className="navbar-brand">
+          <Link href="/" className="navbar-brand" onClick={() => setMenuOpen(false)}>
             <div className="navbar-logos">
               <Image src="/logo-cm.svg" alt="CM Public School" width={44} height={50} />
               <div className="navbar-divider" />
@@ -40,11 +42,19 @@ export default function Navbar({ settings: s }) {
               <p>& Taare Zameen Par Play School</p>
             </div>
           </Link>
-          <div className="navbar-links">
+          <button
+            className="navbar-toggle"
+            aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            onClick={() => setMenuOpen(o => !o)}
+          >
+            {menuOpen ? '✕' : '☰'}
+          </button>
+          <div className={`navbar-links${menuOpen ? ' navbar-links-open' : ''}`}>
             {links.map(link => (
-              <Link key={link.href} href={link.href}>{link.label}</Link>
+              <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>{link.label}</Link>
             ))}
-            <Link href="/admissions" className="navbar-apply">Apply Now</Link>
+            <Link href="/admissions" className="navbar-apply" onClick={() => setMenuOpen(false)}>Apply Now</Link>
           </div>
         </div>
       </nav>

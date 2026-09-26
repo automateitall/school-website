@@ -11,7 +11,7 @@ export default function Footer({ settings: s }) {
             <Image src="/logo-tzp.svg" alt="Taare Zameen Par" width={38} height={38} className="footer-logo" />
           </div>
           <h3>CM Public School &<br />Taare Zameen Par</h3>
-          <p>Nurturing young minds with quality education and strong values. CBSE affiliated, established {s?.foundedYear || '2012'}, {s?.address || 'New Delhi, India'}.</p>
+          <p>Nurturing young minds with quality education and strong values. UP Board affiliated, established {s?.foundedYear || '2012'}, {s?.address || 'New Delhi, India'}.</p>
         </div>
         <div className="footer-col">
           <h4>Quick Links</h4>

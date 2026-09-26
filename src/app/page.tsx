@@ -16,7 +16,7 @@ export default async function Home() {
       <section className="hero">
         <div className="hero-inner">
           <div className="hero-left">
-            <div className="hero-eyebrow">🏫 {s?.cmSchoolEyebrow || 'CBSE Affiliated · Est. 2012'}</div>
+            <div className="hero-eyebrow">🏫 {s?.cmSchoolEyebrow || 'UP Board Affiliated · English Medium · Est. 2012'}</div>
             <h1>{s?.heroHeading || 'Where Every Child Finds Their Spark'}</h1>
             <p className="hero-sub">{s?.heroSubheading || 'CM Public School & Taare Zameen Par Play School'}</p>
             <p className="hero-desc">{s?.heroDescription}</p>
@@ -28,7 +28,7 @@ export default async function Home() {
               <div className="hero-stat"><strong>{s?.yearsOfExcellence || '15+'}</strong><span>Years of excellence</span></div>
               <div className="hero-stat"><strong>{s?.totalStudents || '500+'}</strong><span>Students enrolled</span></div>
               <div className="hero-stat"><strong>{s?.facultyCount || '40+'}</strong><span>Trained faculty</span></div>
-              <div className="hero-stat"><strong>{s?.passRate || '95%'}</strong><span>Board pass rate</span></div>
+              <div className="hero-stat"><strong>{s?.passRate || '95%'}</strong><span>Pass rate</span></div>
             </div>
           </div>
           <div className="hero-right">
@@ -67,8 +67,10 @@ export default async function Home() {
           <div className="schools-grid">
             <div className="school-card school-card-cm">
               <div className="school-card-top">
-                <div className="school-icon school-icon-cm">🏛️</div>
-                <span className="school-tag school-tag-cm">{s?.cmSchoolTag || 'CBSE AFFILIATED'}</span>
+                <div className="school-icon school-icon-cm">
+                  <img src="/logo-cm.svg" alt="CM Public School" style={{ width: '48px', height: '48px' }} />
+                </div>
+                <span className="school-tag school-tag-cm">{s?.cmSchoolTag || 'UP BOARD · ENGLISH MEDIUM'}</span>
               </div>
               <h3 style={{ color: '#083e78' }}>CM Public School</h3>
               <p>{s?.cmSchoolDescription}</p>
@@ -79,7 +81,9 @@ export default async function Home() {
             </div>
             <div className="school-card school-card-tzp">
               <div className="school-card-top">
-                <div className="school-icon school-icon-tzp">⭐</div>
+                <div className="school-icon school-icon-tzp">
+                  <img src="/logo-tzp.svg" alt="Taare Zameen Par" style={{ width: '48px', height: '48px' }} />
+                </div>
                 <span className="school-tag school-tag-tzp">{s?.tzpSchoolTag || 'PLAY SCHOOL'}</span>
               </div>
               <h3 style={{ color: '#c45e1e' }}>Taare Zameen Par</h3>
@@ -115,6 +119,7 @@ export default async function Home() {
       </section>
 
       <NoticesSection />
+      <GallerySection />
 
       <section className="cta-section">
         <h2>{s?.ctaHeading || 'Admissions Open for 2026–27'}</h2>
@@ -178,6 +183,50 @@ async function NoticesSection() {
         )}
         <div className="notices-footer">
           <a href="/notices" className="btn-notices">View All Notices →</a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+async function GallerySection() {
+  let images: any[] = []
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/gallery`, {
+      next: { revalidate: 60 }
+    })
+    const data = await res.json()
+    images = Array.isArray(data) ? data.slice(0, 6) : []
+  } catch {}
+
+  if (images.length === 0) return null
+
+  return (
+    <section style={{ padding: '56px 2rem', background: '#f8fafc' }}>
+      <div className="section-wrap">
+        <div className="section-header">
+          <p className="section-eyebrow">Our Memories</p>
+          <h2 className="section-title">Life at Our Schools</h2>
+          <p className="section-desc">A glimpse into the moments that make our schools special.</p>
+        </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '16px', marginBottom: '32px' }}>
+          {images.map((img: any) => (
+            <div key={img.id} style={{ borderRadius: '12px', overflow: 'hidden', border: '1px solid #e2e8f0', background: 'white' }}>
+              <div style={{ height: '180px', overflow: 'hidden' }}>
+                <img
+                  src={img.imageUrl.replace('/upload/', '/upload/w_600,q_auto,f_auto/')}
+                  alt={img.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </div>
+              <div style={{ padding: '10px 14px' }}>
+                <p style={{ fontWeight: '600', fontSize: '13px', color: '#1e293b' }}>{img.title}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div style={{ textAlign: 'center' }}>
+          <a href="/gallery" className="btn-primary">View Full Gallery →</a>
         </div>
       </div>
     </section>
