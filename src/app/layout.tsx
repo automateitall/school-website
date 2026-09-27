@@ -7,6 +7,10 @@ import { getSettings } from './lib/settings'
 export const metadata: Metadata = {
   title: 'CM Public School & Taare Zameen Par Play School',
   description: 'Quality education for your children in a nurturing environment.',
+  icons: {
+    icon: '/logo-cm.svg',
+    apple: '/logo-cm.svg',
+  },
 }
 
 export default async function RootLayout({
