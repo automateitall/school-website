@@ -39,8 +39,8 @@ export default function Footer({ settings: s }) {
       <div className="footer-bottom">
         <p>© {new Date().getFullYear()} CM Public School & Taare Zameen Par Play School. All rights reserved.</p>
         <div className="footer-bottom-links">
-          <Link href="#">Privacy Policy</Link>
-          <Link href="#">Terms of Use</Link>
+          <Link href="/privacy-policy">Privacy Policy</Link>
+          <Link href="/terms">Terms of Use</Link>
         </div>
       </div>
     </footer>
