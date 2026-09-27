@@ -5,7 +5,7 @@ const CLASS_ORDER = ['Play Group', 'Nursery', 'LKG', 'UKG', 'Class 1', 'Class 2'
 
 const getSeatRows = (settings) => {
   const classFrom = settings?.classFrom || 'Play Group'
-  const classTo = settings?.classTo || 'Class 8'
+  const classTo = settings?.classTo || 'Class 5'
   const fromIdx = CLASS_ORDER.indexOf(classFrom)
   const toIdx = CLASS_ORDER.indexOf(classTo)
   const inRange = (c) => { const idx = CLASS_ORDER.indexOf(c); return idx >= fromIdx && idx <= toIdx }

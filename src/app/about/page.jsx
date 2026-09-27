@@ -19,16 +19,16 @@ export default async function About() {
             <div className="about-text">
               <p className="section-eyebrow" style={{ textAlign: 'left' }}>Who we are</p>
               <h2 className="section-title" style={{ textAlign: 'left' }}>A legacy of learning<br />since {s?.foundedYear || '2012'}</h2>
-              <p className="about-para">CM Public School was founded in {s?.foundedYear || '2012'} with a simple mission — to provide quality, value-based education to children in our community. What started as a small school has grown into a thriving institution serving over {s?.totalStudents || '500+'} students across two campuses.</p>
+              <p className="about-para">CM Public School was founded in {s?.foundedYear || '2012'} with a simple mission — to provide quality, value-based education to children in our community. What started as a small school has grown into a thriving institution serving over {s?.totalStudents || '50+'} students across two campuses.</p>
               <p className="about-para">Taare Zameen Par Play School, our early childhood wing, was established to give the youngest learners a warm, nurturing, and playful first experience with education — building the confidence and curiosity that lasts a lifetime.</p>
-              <p className="about-para">Together, we offer a seamless educational journey from age 2 all the way to {s?.classTo || 'Class XII'} — so your child grows with us every step of the way.</p>
+              <p className="about-para">Together, we offer a seamless educational journey from age 2 all the way to {s?.classTo || 'Class 5'} — so your child grows with us every step of the way.</p>
             </div>
             <div className="about-stats-col">
               {[
                 { n: s?.foundedYear || '2012', label: 'Year founded' },
-                { n: s?.totalStudents || '500+', label: 'Students enrolled' },
+                { n: s?.totalStudents || '50+', label: 'Students enrolled' },
                 { n: s?.facultyCount || '40+', label: 'Trained faculty' },
-                { n: s?.passRate || '95%', label: 'UP Board pass rate' },
+                { n: s?.passRate || '95%', label: 'Annual pass rate' },
                 { n: s?.campuses || '2', label: 'School campuses' },
                 { n: s?.yearsOfExcellence || '15+', label: 'Years of excellence' },
               ].map(stat => (

@@ -41,7 +41,7 @@ export default async function School() {
     <div>
       <section className="page-hero">
         <div className="page-hero-inner">
-          <p className="section-eyebrow">{s?.cmSchoolTag || 'UP Board Affiliated · Nursery to XII'}</p>
+          <p className="section-eyebrow">{s?.cmSchoolTag || `UP Board Affiliated · Nursery to ${s?.classTo || 'Class 5'}`}</p>
           <h1 className="page-hero-title">CM Public School</h1>
           <p className="page-hero-desc">{s?.cmSchoolDescription}</p>
           <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', marginTop: '24px', flexWrap: 'wrap' }}>
@@ -60,14 +60,14 @@ export default async function School() {
               <p className="section-eyebrow" style={{ textAlign: 'left' }}>About Us</p>
               <h2 className="section-title" style={{ textAlign: 'left' }}>Quality education since {s?.foundedYear || '2012'}</h2>
               <p className="about-para">{s?.cmSchoolDescription}</p>
-              <p className="about-para">UP Board affiliated, English medium, with a curriculum spanning Nursery right through Class XII — designed to nurture academic excellence alongside holistic, values-based development.</p>
+              <p className="about-para">UP Board affiliated, English medium, with a curriculum spanning Nursery right through {s?.classTo || 'Class 5'} — designed to nurture academic excellence alongside holistic, values-based development.</p>
             </div>
             <div className="about-stats-col">
               {[
                 { n: s?.foundedYear || '2012', label: 'Year founded' },
-                { n: s?.totalStudents || '500+', label: 'Students enrolled' },
+                { n: s?.totalStudents || '50+', label: 'Students enrolled' },
                 { n: s?.facultyCount || '40+', label: 'Trained faculty' },
-                { n: s?.passRate || '95%', label: 'UP Board pass rate' },
+                { n: s?.passRate || '95%', label: 'Annual pass rate' },
               ].map(stat => (
                 <div key={stat.label} className="about-stat-card">
                   <strong>{stat.n}</strong>
@@ -139,9 +139,9 @@ export default async function School() {
             <h2 className="section-title">Achievements that matter</h2>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))', gap: '16px', marginTop: '24px' }}>
               {[
-                { n: s?.passRate || '95%', label: 'UP Board pass rate' },
+                { n: s?.passRate || '95%', label: 'Annual pass rate' },
                 { n: s?.yearsOfExcellence || '15+', label: 'Years of excellence' },
-                { n: s?.totalStudents || '500+', label: 'Students enrolled' },
+                { n: s?.totalStudents || '50+', label: 'Students enrolled' },
                 { n: s?.campuses || '2', label: 'Campuses' },
               ].map(stat => (
                 <div key={stat.label} className="about-stat-card">

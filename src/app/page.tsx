@@ -26,7 +26,7 @@ export default async function Home() {
             </div>
             <div className="hero-stats">
               <div className="hero-stat"><strong>{s?.yearsOfExcellence || '15+'}</strong><span>Years of excellence</span></div>
-              <div className="hero-stat"><strong>{s?.totalStudents || '500+'}</strong><span>Students enrolled</span></div>
+              <div className="hero-stat"><strong>{s?.totalStudents || '50+'}</strong><span>Students enrolled</span></div>
               <div className="hero-stat"><strong>{s?.facultyCount || '40+'}</strong><span>Trained faculty</span></div>
               <div className="hero-stat"><strong>{s?.passRate || '95%'}</strong><span>Pass rate</span></div>
             </div>
@@ -62,7 +62,7 @@ export default async function Home() {
           <div className="section-header">
             <p className="section-eyebrow">Our Institutions</p>
             <h2 className="section-title">Two Schools, One Vision</h2>
-            <p className="section-desc">From ages 2 to 18 — committed to nurturing every stage of your child's journey.</p>
+            <p className="section-desc">From {s?.classFrom || 'Play Group'} to {s?.classTo || 'Class 5'} — committed to nurturing every stage of your child's journey.</p>
           </div>
           <div className="schools-grid">
             <div className="school-card school-card-cm">
@@ -75,7 +75,7 @@ export default async function Home() {
               <h3 style={{ color: '#083e78' }}>CM Public School</h3>
               <p>{s?.cmSchoolDescription}</p>
               <div className="school-card-footer">
-                <span className="school-meta">👥 {s?.totalStudents || '500+'} students enrolled</span>
+                <span className="school-meta">👥 {s?.totalStudents || '50+'} students enrolled</span>
                 <a href="/school" className="btn-school-cm">Explore →</a>
               </div>
             </div>
@@ -89,7 +89,7 @@ export default async function Home() {
               <h3 style={{ color: '#c45e1e' }}>Taare Zameen Par</h3>
               <p>{s?.tzpSchoolDescription}</p>
               <div className="school-card-footer">
-                <span className="school-meta">👥 150+ little ones</span>
+                <span className="school-meta">🌟 Ages 2 to 6</span>
                 <a href="/playgroup" className="btn-school-tzp">Explore →</a>
               </div>
             </div>

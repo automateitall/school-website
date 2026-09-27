@@ -101,7 +101,7 @@ export default async function Playgroup() {
               <p className="about-para">We take pride in providing the best early childhood experience for every child.</p>
               <div className="about-stats-col" style={{ marginTop: '20px' }}>
                 {[
-                  { n: '150+', label: 'Happy children enrolled', color: '#ff914d' },
+                  { n: '4', label: 'Levels offered (PG–UKG)', color: '#ff914d' },
                   { n: '2–6', label: 'Age group we serve', color: '#00bf63' },
                   { n: '10:1', label: 'Child to teacher ratio', color: '#083e78' },
                   { n: '14+', label: 'Years of nurturing children', color: '#ff914d' },
